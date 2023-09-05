@@ -1,87 +1,50 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-card class="align-center">
+    <v-container>
+      <v-row class="align-center">
+        <v-col cols="3"></v-col>
+        <v-col cols="1">
+          <v-img :src="require('../assets/slime.jpg')" alt="Slime" height="100px" width="100px" contain/>
+        </v-col>
+        <v-col>
+          <p>{{ randomText }}</p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="d-flex justify-center align-center">
+          Repository: 
+          <a href="https://github.com/aaronsunzw/csdfa/tree/main/workshop01">https://github.com/aaronsunzw/csdfa/tree/main/workshop01</a>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
+
+
 
 <script>
 export default {
   name: 'IndexPage',
+  data() {
+    return {
+      randomText: '',
+      textOptions: [
+        "Logic will get you from A to B. Imagination will take you everywhere.",
+        "There are 10 kinds of people. Those who know binary and those who don't.",
+        "There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies and the other is to make it so complicated that there are no obvious deficiencies.",
+        "It's not that I'm so smart, it's just that I stay with problems longer.",
+        "It is pitch dark. You are likely to be eaten by a grue.",
+      ],
+    };
+  },
+  created() {
+    this.randomText = this.getRandomText();
+  },
+  methods: {
+    getRandomText() {
+      const randomIndex = Math.floor(Math.random() * this.textOptions.length);
+      return this.textOptions[randomIndex];
+    },
+  },
 }
 </script>
